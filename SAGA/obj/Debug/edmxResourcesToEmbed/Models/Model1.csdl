@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sagaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FactorKUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="KBlitz" Type="Int32" Nullable="false" />
+    <Property Name="KRapid" Type="Int32" Nullable="false" />
+    <Property Name="KStd" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_FactorKUsuario_UsuarioId" FromRole="FactorKUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="FuncionalidadesPorRol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdRol" Type="Int32" />
+    <Property Name="Funcionalidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_FuncionalidadesPorRol_Rol" FromRole="FuncionalidadesPorRol" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="LoginLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LogoutTime" Type="DateTime" Precision="3" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_LoginLogs_UserId" FromRole="LoginLogs" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="NivelSuscripcion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_Usuario_NivelSuscripcion" FromRole="NivelSuscripcion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Partida">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTorneo" Type="Int32" Nullable="false" />
+    <Property Name="IdBlancas" Type="Int32" Nullable="false" />
+    <Property Name="IdNegras" Type="Int32" Nullable="false" />
+    <Property Name="EloBlanas" Type="Int32" />
+    <Property Name="EloNegras" Type="Int32" />
+    <Property Name="VarELOBlancas" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="VarELONegras" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Resultado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdTipoRitmo" Type="Int32" />
+    <Property Name="FechaHora" Type="DateTime" Precision="3" />
+    <Property Name="Evaluada" Type="Boolean" />
+    <Property Name="PGN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TipoRitmo" Relationship="Self.FK_Partida_TipoRitmo" FromRole="Partida" ToRole="TipoRitmo" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_Partida_Torneo" FromRole="Partida" ToRole="Torneo" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_Partida_Usuario" FromRole="Partida" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="sagaModel.FK_Partida_Usuario1" FromRole="Partida" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Provincia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_Torneo_Provincia" FromRole="Provincia" ToRole="Torneo" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_Usuario_Provincia" FromRole="Provincia" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FuncionalidadesPorRol" Relationship="Self.FK_FuncionalidadesPorRol_Rol" FromRole="Rol" ToRole="FuncionalidadesPorRol" />
+    <NavigationProperty Name="RolUsuario" Relationship="Self.FK_RolUsuario_Rol" FromRole="Rol" ToRole="RolUsuario" />
+  </EntityType>
+  <EntityType Name="RolUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_RolUsuario_Rol" FromRole="RolUsuario" ToRole="Rol" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_RolUsuario_Usuario" FromRole="RolUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TipoRitmo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Partida" Relationship="Self.FK_Partida_TipoRitmo" FromRole="TipoRitmo" ToRole="Partida" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_Torneo_TipoRitmo" FromRole="TipoRitmo" ToRole="Torneo" />
+  </EntityType>
+  <EntityType Name="Titulo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TituloUsuario" Relationship="Self.FK_TituloUsuario_Titulo" FromRole="Titulo" ToRole="TituloUsuario" />
+  </EntityType>
+  <EntityType Name="TituloUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdTitulo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Titulo" Relationship="Self.FK_TituloUsuario_Titulo" FromRole="TituloUsuario" ToRole="Titulo" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_TituloUsuario_Usuario" FromRole="TituloUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Torneo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdArbitro" Type="Int32" />
+    <Property Name="IdRitmo" Type="Int32" />
+    <Property Name="Evaluado" Type="Boolean" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+    <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Partida" Relationship="Self.FK_Partida_Torneo" FromRole="Torneo" ToRole="Partida" />
+    <NavigationProperty Name="Provincia" Relationship="Self.FK_Torneo_Provincia" FromRole="Torneo" ToRole="Provincia" />
+    <NavigationProperty Name="TipoRitmo" Relationship="Self.FK_Torneo_TipoRitmo" FromRole="Torneo" ToRole="TipoRitmo" />
+    <NavigationProperty Name="ParticipanteTorneo" Relationship="sagaModel.FK_ParticipanteTorneo_Torneo" FromRole="Torneo" ToRole="ParticipanteTorneo" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_Torneo_Usuario" FromRole="Torneo" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_FuncionalidadesPorRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="FuncionalidadesPorRol" Type="Self.FuncionalidadesPorRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FuncionalidadesPorRol">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_TipoRitmo">
+    <End Role="TipoRitmo" Type="Self.TipoRitmo" Multiplicity="0..1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoRitmo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdTipoRitmo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_Torneo">
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdTorneo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Torneo_Provincia">
+    <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provincia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolUsuario_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolUsuario" Type="Self.RolUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolUsuario">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Torneo_TipoRitmo">
+    <End Role="TipoRitmo" Type="Self.TipoRitmo" Multiplicity="0..1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoRitmo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdRitmo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TituloUsuario_Titulo">
+    <End Role="Titulo" Type="Self.Titulo" Multiplicity="1" />
+    <End Role="TituloUsuario" Type="Self.TituloUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Titulo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TituloUsuario">
+        <PropertyRef Name="IdTitulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sagaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FactorKUsuario" EntityType="Self.FactorKUsuario" />
+    <EntitySet Name="FuncionalidadesPorRol" EntityType="Self.FuncionalidadesPorRol" />
+    <EntitySet Name="LoginLogs" EntityType="Self.LoginLogs" />
+    <EntitySet Name="NivelSuscripcion" EntityType="Self.NivelSuscripcion" />
+    <EntitySet Name="Partida" EntityType="Self.Partida" />
+    <EntitySet Name="Provincia" EntityType="Self.Provincia" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="RolUsuario" EntityType="Self.RolUsuario" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TipoRitmo" EntityType="Self.TipoRitmo" />
+    <EntitySet Name="Titulo" EntityType="Self.Titulo" />
+    <EntitySet Name="TituloUsuario" EntityType="Self.TituloUsuario" />
+    <EntitySet Name="Torneo" EntityType="Self.Torneo" />
+    <AssociationSet Name="FK_FuncionalidadesPorRol_Rol" Association="Self.FK_FuncionalidadesPorRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="FuncionalidadesPorRol" EntitySet="FuncionalidadesPorRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_TipoRitmo" Association="Self.FK_Partida_TipoRitmo">
+      <End Role="TipoRitmo" EntitySet="TipoRitmo" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_Torneo" Association="Self.FK_Partida_Torneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Torneo_Provincia" Association="Self.FK_Torneo_Provincia">
+      <End Role="Provincia" EntitySet="Provincia" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolUsuario_Rol" Association="Self.FK_RolUsuario_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolUsuario" EntitySet="RolUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Torneo_TipoRitmo" Association="Self.FK_Torneo_TipoRitmo">
+      <End Role="TipoRitmo" EntitySet="TipoRitmo" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TituloUsuario_Titulo" Association="Self.FK_TituloUsuario_Titulo">
+      <End Role="Titulo" EntitySet="Titulo" />
+      <End Role="TituloUsuario" EntitySet="TituloUsuario" />
+    </AssociationSet>
+    <EntitySet Name="ParticipanteTorneo" EntityType="sagaModel.ParticipanteTorneo" />
+    <AssociationSet Name="FK_ParticipanteTorneo_Torneo" Association="sagaModel.FK_ParticipanteTorneo_Torneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="ParticipanteTorneo" EntitySet="ParticipanteTorneo" />
+    </AssociationSet>
+    <EntitySet Name="Usuario" EntityType="sagaModel.Usuario" />
+    <AssociationSet Name="FK_FactorKUsuario_UsuarioId" Association="sagaModel.FK_FactorKUsuario_UsuarioId">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="FactorKUsuario" EntitySet="FactorKUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginLogs_UserId" Association="sagaModel.FK_LoginLogs_UserId">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="LoginLogs" EntitySet="LoginLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_NivelSuscripcion" Association="sagaModel.FK_Usuario_NivelSuscripcion">
+      <End Role="NivelSuscripcion" EntitySet="NivelSuscripcion" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParticipanteTorneo_Usuario" Association="sagaModel.FK_ParticipanteTorneo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="ParticipanteTorneo" EntitySet="ParticipanteTorneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_Usuario" Association="sagaModel.FK_Partida_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_Usuario1" Association="sagaModel.FK_Partida_Usuario1">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Provincia" Association="sagaModel.FK_Usuario_Provincia">
+      <End Role="Provincia" EntitySet="Provincia" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolUsuario_Usuario" Association="sagaModel.FK_RolUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="RolUsuario" EntitySet="RolUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TituloUsuario_Usuario" Association="sagaModel.FK_TituloUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="TituloUsuario" EntitySet="TituloUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Torneo_Usuario" Association="sagaModel.FK_Torneo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ParticipanteTorneo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTorneo" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="InicialELO" Type="Int32" Nullable="false" />
+    <Property Name="ObservacionesParcicipante" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Torneo" Relationship="sagaModel.FK_ParticipanteTorneo_Torneo" FromRole="ParticipanteTorneo" ToRole="Torneo" />
+    <NavigationProperty Name="Usuario" Relationship="sagaModel.FK_ParticipanteTorneo_Usuario" FromRole="ParticipanteTorneo" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_ParticipanteTorneo_Torneo">
+    <End Type="sagaModel.Torneo" Role="Torneo" Multiplicity="1" />
+    <End Type="sagaModel.ParticipanteTorneo" Role="ParticipanteTorneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParticipanteTorneo">
+        <PropertyRef Name="IdTorneo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApellidoyNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="Int32" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+    <Property Name="Pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Pass" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IdFide" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdLichess" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UrlFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EMV" Type="Boolean" />
+    <Property Name="IdNivelSuscripcion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FactorKUsuario" Relationship="sagaModel.FK_FactorKUsuario_UsuarioId" FromRole="Usuario" ToRole="FactorKUsuario" />
+    <NavigationProperty Name="LoginLogs" Relationship="sagaModel.FK_LoginLogs_UserId" FromRole="Usuario" ToRole="LoginLogs" />
+    <NavigationProperty Name="NivelSuscripcion" Relationship="sagaModel.FK_Usuario_NivelSuscripcion" FromRole="Usuario" ToRole="NivelSuscripcion" />
+    <NavigationProperty Name="ParticipanteTorneo" Relationship="sagaModel.FK_ParticipanteTorneo_Usuario" FromRole="Usuario" ToRole="ParticipanteTorneo" />
+    <NavigationProperty Name="Partida" Relationship="sagaModel.FK_Partida_Usuario" FromRole="Usuario" ToRole="Partida" />
+    <NavigationProperty Name="Partida1" Relationship="sagaModel.FK_Partida_Usuario1" FromRole="Usuario" ToRole="Partida" />
+    <NavigationProperty Name="Provincia" Relationship="sagaModel.FK_Usuario_Provincia" FromRole="Usuario" ToRole="Provincia" />
+    <NavigationProperty Name="RolUsuario" Relationship="sagaModel.FK_RolUsuario_Usuario" FromRole="Usuario" ToRole="RolUsuario" />
+    <NavigationProperty Name="TituloUsuario" Relationship="sagaModel.FK_TituloUsuario_Usuario" FromRole="Usuario" ToRole="TituloUsuario" />
+    <NavigationProperty Name="Torneo" Relationship="sagaModel.FK_Torneo_Usuario" FromRole="Usuario" ToRole="Torneo" />
+  </EntityType>
+  <Association Name="FK_FactorKUsuario_UsuarioId">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="sagaModel.FactorKUsuario" Role="FactorKUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FactorKUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginLogs_UserId">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="sagaModel.LoginLogs" Role="LoginLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoginLogs">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_NivelSuscripcion">
+    <End Type="sagaModel.NivelSuscripcion" Role="NivelSuscripcion" Multiplicity="1" />
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivelSuscripcion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdNivelSuscripcion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParticipanteTorneo_Usuario">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="sagaModel.ParticipanteTorneo" Role="ParticipanteTorneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParticipanteTorneo">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_Usuario">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="sagaModel.Partida" Role="Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdBlancas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_Usuario1">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="sagaModel.Partida" Role="Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdNegras" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Provincia">
+    <End Type="sagaModel.Provincia" Role="Provincia" Multiplicity="1" />
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provincia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolUsuario_Usuario">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="sagaModel.RolUsuario" Role="RolUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TituloUsuario_Usuario">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="sagaModel.TituloUsuario" Role="TituloUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TituloUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Torneo_Usuario">
+    <End Type="sagaModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="sagaModel.Torneo" Role="Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdArbitro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

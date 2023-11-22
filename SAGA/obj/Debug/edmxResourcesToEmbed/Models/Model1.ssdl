@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sagaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FactorKUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="KBlitz" Type="int" Nullable="false" />
+    <Property Name="KRapid" Type="int" Nullable="false" />
+    <Property Name="KStd" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FuncionalidadesPorRol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRol" Type="int" />
+    <Property Name="Funcionalidad" Type="varchar" MaxLength="100" />
+    <Property Name="Descripcion" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="LoginLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="LoginTime" Type="datetime" Nullable="false" />
+    <Property Name="LogoutTime" Type="datetime" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="50" />
+    <Property Name="UserAgent" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="NivelSuscripcion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar(max)" />
+    <Property Name="Precio" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="ParticipanteTorneo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTorneo" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="InicialELO" Type="int" Nullable="false" />
+    <Property Name="ObservacionesParcicipante" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Partida">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTorneo" Type="int" Nullable="false" />
+    <Property Name="IdBlancas" Type="int" Nullable="false" />
+    <Property Name="IdNegras" Type="int" Nullable="false" />
+    <Property Name="EloBlanas" Type="int" />
+    <Property Name="EloNegras" Type="int" />
+    <Property Name="VarELOBlancas" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="VarELONegras" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Resultado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdTipoRitmo" Type="int" />
+    <Property Name="FechaHora" Type="datetime" />
+    <Property Name="Evaluada" Type="bit" />
+    <Property Name="PGN" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Provincia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Codigo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RolUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TipoRitmo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Titulo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Codigo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TituloUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdTitulo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Torneo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar(max)" />
+    <Property Name="IdArbitro" Type="int" />
+    <Property Name="IdRitmo" Type="int" />
+    <Property Name="Evaluado" Type="bit" />
+    <Property Name="FechaInicio" Type="datetime" />
+    <Property Name="IdProvincia" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApellidoyNombre" Type="varchar" MaxLength="100" />
+    <Property Name="DNI" Type="int" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="Sexo" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion" Type="varchar" MaxLength="50" />
+    <Property Name="IdProvincia" Type="int" Nullable="false" />
+    <Property Name="Pais" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Pass" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="IdFide" Type="varchar" MaxLength="50" />
+    <Property Name="IdLichess" Type="varchar" MaxLength="50" />
+    <Property Name="UrlFoto" Type="varchar(max)" />
+    <Property Name="EMV" Type="bit" />
+    <Property Name="IdNivelSuscripcion" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_FactorKUsuario_UsuarioId">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="FactorKUsuario" Type="Self.FactorKUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FactorKUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuncionalidadesPorRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="FuncionalidadesPorRol" Type="Self.FuncionalidadesPorRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FuncionalidadesPorRol">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginLogs_UserId">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="LoginLogs" Type="Self.LoginLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoginLogs">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParticipanteTorneo_Torneo">
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+    <End Role="ParticipanteTorneo" Type="Self.ParticipanteTorneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParticipanteTorneo">
+        <PropertyRef Name="IdTorneo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParticipanteTorneo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="ParticipanteTorneo" Type="Self.ParticipanteTorneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParticipanteTorneo">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_TipoRitmo">
+    <End Role="TipoRitmo" Type="Self.TipoRitmo" Multiplicity="0..1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoRitmo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdTipoRitmo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_Torneo">
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdTorneo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdBlancas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partida_Usuario1">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="IdNegras" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolUsuario_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolUsuario" Type="Self.RolUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolUsuario">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolUsuario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="RolUsuario" Type="Self.RolUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TituloUsuario_Titulo">
+    <End Role="Titulo" Type="Self.Titulo" Multiplicity="1" />
+    <End Role="TituloUsuario" Type="Self.TituloUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Titulo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TituloUsuario">
+        <PropertyRef Name="IdTitulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TituloUsuario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="TituloUsuario" Type="Self.TituloUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TituloUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Torneo_TipoRitmo">
+    <End Role="TipoRitmo" Type="Self.TipoRitmo" Multiplicity="0..1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoRitmo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdRitmo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Torneo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdArbitro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_NivelSuscripcion">
+    <End Role="NivelSuscripcion" Type="Self.NivelSuscripcion" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivelSuscripcion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdNivelSuscripcion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Provincia">
+    <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provincia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sagaModelStoreContainer">
+    <EntitySet Name="FactorKUsuario" EntityType="Self.FactorKUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FuncionalidadesPorRol" EntityType="Self.FuncionalidadesPorRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginLogs" EntityType="Self.LoginLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NivelSuscripcion" EntityType="Self.NivelSuscripcion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParticipanteTorneo" EntityType="Self.ParticipanteTorneo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolUsuario" EntityType="Self.RolUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoRitmo" EntityType="Self.TipoRitmo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Titulo" EntityType="Self.Titulo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TituloUsuario" EntityType="Self.TituloUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FactorKUsuario_UsuarioId" Association="Self.FK_FactorKUsuario_UsuarioId">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="FactorKUsuario" EntitySet="FactorKUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuncionalidadesPorRol_Rol" Association="Self.FK_FuncionalidadesPorRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="FuncionalidadesPorRol" EntitySet="FuncionalidadesPorRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginLogs_UserId" Association="Self.FK_LoginLogs_UserId">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="LoginLogs" EntitySet="LoginLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParticipanteTorneo_Torneo" Association="Self.FK_ParticipanteTorneo_Torneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="ParticipanteTorneo" EntitySet="ParticipanteTorneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParticipanteTorneo_Usuario" Association="Self.FK_ParticipanteTorneo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="ParticipanteTorneo" EntitySet="ParticipanteTorneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_TipoRitmo" Association="Self.FK_Partida_TipoRitmo">
+      <End Role="TipoRitmo" EntitySet="TipoRitmo" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_Torneo" Association="Self.FK_Partida_Torneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_Usuario" Association="Self.FK_Partida_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partida_Usuario1" Association="Self.FK_Partida_Usuario1">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolUsuario_Rol" Association="Self.FK_RolUsuario_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolUsuario" EntitySet="RolUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolUsuario_Usuario" Association="Self.FK_RolUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="RolUsuario" EntitySet="RolUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TituloUsuario_Titulo" Association="Self.FK_TituloUsuario_Titulo">
+      <End Role="Titulo" EntitySet="Titulo" />
+      <End Role="TituloUsuario" EntitySet="TituloUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TituloUsuario_Usuario" Association="Self.FK_TituloUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="TituloUsuario" EntitySet="TituloUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Torneo_TipoRitmo" Association="Self.FK_Torneo_TipoRitmo">
+      <End Role="TipoRitmo" EntitySet="TipoRitmo" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Torneo_Usuario" Association="Self.FK_Torneo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_NivelSuscripcion" Association="Self.FK_Usuario_NivelSuscripcion">
+      <End Role="NivelSuscripcion" EntitySet="NivelSuscripcion" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Provincia" Association="Self.FK_Usuario_Provincia">
+      <End Role="Provincia" EntitySet="Provincia" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<SAGA.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoyNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DNI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdFide)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdLichess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlFoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NivelSuscripcion.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Provincia.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoyNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DNI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdFide)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdLichess)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlFoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NivelSuscripcion.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Provincia.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

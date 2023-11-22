@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5cdc70dd61404e34bf943ca58c1afc83" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="sagaModel.FactorKUsuario" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.FuncionalidadesPorRol" Width="1.5" PointX="12.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.LoginLogs" Width="1.5" PointX="9.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.NivelSuscripcion" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.Partida" Width="1.5" PointX="5.625" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.Provincia" Width="1.5" PointX="10.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.Rol" Width="1.5" PointX="10.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.RolUsuario" Width="1.5" PointX="12.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.TipoRitmo" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.Titulo" Width="1.5" PointX="10.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.TituloUsuario" Width="1.5" PointX="12.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sagaModel.Torneo" Width="1.5" PointX="12.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="sagaModel.FK_FuncionalidadesPorRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="sagaModel.FK_Partida_TipoRitmo" ManuallyRouted="false" />
+        <AssociationConnector Association="sagaModel.FK_Partida_Torneo" ManuallyRouted="false" />
+        <AssociationConnector Association="sagaModel.FK_Torneo_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="sagaModel.FK_RolUsuario_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="sagaModel.FK_Torneo_TipoRitmo" ManuallyRouted="false" />
+        <AssociationConnector Association="sagaModel.FK_TituloUsuario_Titulo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="sagaModel.ParticipanteTorneo" Width="1.5" PointX="15" PointY="7.25" />
+        <AssociationConnector Association="sagaModel.FK_ParticipanteTorneo_Torneo" />
+        <EntityTypeShape EntityType="sagaModel.Usuario" Width="1.5" PointX="15.75" PointY="10.375" />
+        <AssociationConnector Association="sagaModel.FK_FactorKUsuario_UsuarioId" />
+        <AssociationConnector Association="sagaModel.FK_LoginLogs_UserId" />
+        <AssociationConnector Association="sagaModel.FK_Usuario_NivelSuscripcion" />
+        <AssociationConnector Association="sagaModel.FK_ParticipanteTorneo_Usuario" />
+        <AssociationConnector Association="sagaModel.FK_Partida_Usuario" />
+        <AssociationConnector Association="sagaModel.FK_Partida_Usuario1" />
+        <AssociationConnector Association="sagaModel.FK_Usuario_Provincia" />
+        <AssociationConnector Association="sagaModel.FK_RolUsuario_Usuario" />
+        <AssociationConnector Association="sagaModel.FK_TituloUsuario_Usuario" />
+        <AssociationConnector Association="sagaModel.FK_Torneo_Usuario" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
